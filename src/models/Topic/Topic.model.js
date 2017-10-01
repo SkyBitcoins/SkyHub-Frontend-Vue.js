@@ -50,6 +50,12 @@ export default class Topic {
 
         this.addInfo = data.addInfo || {};
 
+        this.details = data.details || {};
+        this.price = data.price || {};
+        this.shipping = data.shipping || {};
+        this.ratingScoresList = data.ratingScoresList || {};
+        this.reviewsList = data.reviewsList || {};
+
         if (typeof this.addInfo.dtCreation !== 'undefined'){
             this.addInfo.dtCreation = ((typeof this.addInfo.dtCreation === "string")&&(this.addInfo.dtCreation !== '')) ? Date.parse(this.addInfo.dtCreation) : new Date(this.addInfo.dtCreation||new Date());
         }
