@@ -17,6 +17,11 @@
 
                     <router-link :to="'/'+topic.URL+'#top'" :disableLink="this.showPreview" >
                         <h4 class="table-forums-topic-title" v-html="getTopicTitle"></h4>
+                        <h2><b>{{this.getPrice}}</b></h2>
+                        <h3 v-if="(this.topic.price.youSave||'') != ''">{{this.topic.price.listPrice||''}} saving {{this.topic.price.youSave||''}}</h3>
+                        <h4 v-if="(this.topic.price.watching||'') != ''">watching {{this.topic.price.watching||''}}</h4>
+                        <h3 v-if="(this.topic.price.quantitySold||'') != ''">sold {{this.topic.price.quantitySold||''}}</h3>
+                        <h4 v-if="(this.topic.price.quantityAvailable||'') != ''">available {{this.topic.price.quantityAvailable||''}}</h4>
                     </router-link>
 
 
@@ -139,6 +144,10 @@
 
             getShortDescription(){
                 return sanitizeAdvancedShortDescription(Attachments.getShortDescription(this.topic)||'', 512, false);
+            },
+
+            getPrice(){
+                return (this.topic.price.currency||'')+" "+ (this.topic.price.price||'')
             },
 
             viewMore(){

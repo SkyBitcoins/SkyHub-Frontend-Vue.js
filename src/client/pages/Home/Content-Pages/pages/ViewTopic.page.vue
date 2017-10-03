@@ -72,6 +72,16 @@
                                     </p>
                                 </div>
 
+
+                                <div style="text-align: right">
+                                    <h2>{{this.getPrice}}</h2>
+                                    <h3 v-if="(this.getTopic.price.youSave||'') != ''">{{this.getTopic.price.listPrice||''}} saving {{this.getTopic.price.youSave||''}}</h3>
+                                    <h4 v-if="(this.getTopic.price.watching||'') != ''">watching {{this.getTopic.price.watching||''}}</h4>
+                                    <h3 v-if="(this.getTopic.price.quantitySold||'') != ''">sold {{this.getTopic.price.quantitySold||''}}</h3>
+                                    <h4 v-if="(this.getTopic.price.quantityAvailable||'') != ''">available {{this.getTopic.price.quantityAvailable||''}}</h4>
+                                </div>
+
+
                                 <div v-if="(this.viewMore === false) || ((this.viewMore === true) && (this.showPreview === false)) || ((this.viewMore === true) && (this.showPreview === true)  && (this.previewStatus === false))">
                                     <p>
                                         <div v-html="this.getDescription" />
@@ -210,6 +220,10 @@
 
             getDescription(){
                 return Attachments.getDescription(this.getTopic)||'';
+            },
+
+            getPrice(){
+                return (this.getTopic.price.currency||'')+" "+ (this.getTopic.price.price||'')
             },
 
             getShortDescription(){
