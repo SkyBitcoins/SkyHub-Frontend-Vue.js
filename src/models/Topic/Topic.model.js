@@ -50,6 +50,7 @@ export default class Topic {
 
         this.addInfo = data.addInfo || {};
 
+        this.authorInfo = data.authorInfo || {};
         this.details = data.details || {};
         this.price = data.price || {};
         this.shipping = data.shipping || {};

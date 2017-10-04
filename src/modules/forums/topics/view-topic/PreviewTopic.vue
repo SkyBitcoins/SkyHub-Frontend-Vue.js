@@ -21,7 +21,7 @@
                         <h3 v-if="(this.topic.price.youSave||'') != ''">{{this.topic.price.listPrice||''}} saving {{this.topic.price.youSave||''}}</h3>
                         <h4 v-if="(this.topic.price.watching||'') != ''">watching {{this.topic.price.watching||''}}</h4>
                         <h3 v-if="(this.topic.price.quantitySold||'') != ''">sold {{this.topic.price.quantitySold||''}}</h3>
-                        <h4 v-if="(this.topic.price.quantityAvailable||'') != ''">available {{this.topic.price.quantityAvailable||''}}</h4>
+                        <h4 v-if="(this.topic.price.quantityAvailable||'') != ''">{{this.topic.price.quantityAvailable||''}}</h4>
                     </router-link>
 
 
@@ -50,7 +50,7 @@
                 <div class="clearfix" />
 
 
-                <ViewUserForum style='display: inline' :authorId="topic.authorId" :additionalInformation="topic.addInfo">
+                <ViewUserForum style='display: inline' :authorId="topic.authorId" :additionalInformation="topic.addInfo" :authorInfo="topic.authorInfo">
 
                     <ShowDate :date="topic.addInfo.dtRealCreation||topic.dtCreation" slot="view-user-bottom"/>
 

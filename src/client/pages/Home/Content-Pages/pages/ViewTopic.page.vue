@@ -46,7 +46,7 @@
 
                             <Voting :parentId = "getTopic.id" />
 
-                            <ViewUserForum :authorId="getTopic.authorId" :additionalInformation="getTopic.addInfo">
+                            <ViewUserForum :authorId="getTopic.authorId" :additionalInformation="getTopic.addInfo" :authorInfo="getTopic.authorInfo">
                                 <h3 class="reply-header-title"  slot="view-user-after-profile-pic">{{getTopic.title || '' }} </h3>
                             </ViewUserForum>
 
@@ -78,7 +78,7 @@
                                     <h3 v-if="(this.getTopic.price.youSave||'') != ''">{{this.getTopic.price.listPrice||''}} saving {{this.getTopic.price.youSave||''}}</h3>
                                     <h4 v-if="(this.getTopic.price.watching||'') != ''">watching {{this.getTopic.price.watching||''}}</h4>
                                     <h3 v-if="(this.getTopic.price.quantitySold||'') != ''">sold {{this.getTopic.price.quantitySold||''}}</h3>
-                                    <h4 v-if="(this.getTopic.price.quantityAvailable||'') != ''">available {{this.getTopic.price.quantityAvailable||''}}</h4>
+                                    <h4 v-if="(this.getTopic.price.quantityAvailable||'') != ''">{{this.getTopic.price.quantityAvailable||''}}</h4>
                                 </div>
 
 

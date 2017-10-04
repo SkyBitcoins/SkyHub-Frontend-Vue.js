@@ -6,16 +6,33 @@
 
 <template>
 
-    <div>
+    <div style="padding-left: 10px">
         <slot name="view-user-top" />
 
         <img :src="this.getUserProfilePic" class="img-circle" align="left" alt="image" style='max-width: 48px; max-height: 48px; margin-right: 10px' />
 
         <slot name="view-user-after-profile-pic" />
 
-        <h4 class="reply-header-authorName">{{ this.getUserFullName }} </h4>
+        <h4 class="reply-header-authorName">{{ this.getUserFullName }}</h4>
         <h5 class="reply-header-bio">{{ this.getUserBio }} </h5>
 
+
+        <h4 >{{ this.authorInfo.feedbackOverall||'' }} ({{this.authorInfo.score||''}} transactions)</h4>
+
+        <div>
+            <span
+                    v-for="(feedback, index) in this.authorInfo.feedbackSummaryList"
+                    :key="'feedback'+index+authorId"
+            >
+                <i class="fa fa-check" ></i>
+
+                {{feedback}}
+                <br/>
+            </span>
+        </div>
+
+
+        <br/>
         <slot name="view-user-bottom" />
     </div>
 
@@ -32,7 +49,9 @@
 
         props:{
             authorId: {default: ''},
-            additionalInformation: {default: ''},
+
+            additionalInformation: {default: function (){return {} }},
+            authorInfo: {default: function (){return {} }},
         },
 
         mounted(){
