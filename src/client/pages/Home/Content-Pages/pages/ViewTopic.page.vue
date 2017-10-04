@@ -79,6 +79,8 @@
                                     <h4 v-if="(this.getTopic.price.watching||'') != ''">watching {{this.getTopic.price.watching||''}}</h4>
                                     <h3 v-if="(this.getTopic.price.quantitySold||'') != ''">sold {{this.getTopic.price.quantitySold||''}}</h3>
                                     <h4 v-if="(this.getTopic.price.quantityAvailable||'') != ''">{{this.getTopic.price.quantityAvailable||''}}</h4>
+
+                                    <ServerTimerCountDown />
                                 </div>
 
 
@@ -166,6 +168,7 @@
 
     import Topic from 'models/Topic/Topic.model';
     import Attachments from 'models/Attachment/Attachments.model'
+    import ServerTimerCountDown from 'client/components/util-components/UI/timer-count-down/ServerTimerCountDown.component.vue'
 
     export default{
 
@@ -180,6 +183,7 @@
             'ViewAllReplies': ViewAllReplies,
             'Voting' : Voting,
             'ViewUserForum': ViewUserForum,
+            'ServerTimerCountDown': ServerTimerCountDown,
         },
 
         props: {

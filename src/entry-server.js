@@ -18,7 +18,7 @@ export default context => {
 
     //processing the AUTHENTICATION
     store.dispatch('LOCALIZATION_NEW_IP', { ip: context.ip } ); //Dispatching the Context IP
-    store.dispatch('GLOBAL_NEW_TIME_SERVER', { time: new Date().getTime() } ); //Dispatching Server Time
+    store.dispatch('GLOBAL_NEW_TIME_SERVER', { time: (new Date()).getTime() } ); //Dispatching Server Time
 
     let cookie =   context.cookies.sessionId || context.cookies.credential; //credential is the old SkyHub session Id
 
