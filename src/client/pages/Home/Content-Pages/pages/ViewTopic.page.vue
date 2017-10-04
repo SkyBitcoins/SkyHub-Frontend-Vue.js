@@ -47,7 +47,7 @@
                             <Voting :parentId = "getTopic.id" />
 
                             <ViewUserForum :authorId="getTopic.authorId" :additionalInformation="getTopic.addInfo" :authorInfo="getTopic.authorInfo">
-                                <h3 class="reply-header-title"  slot="view-user-after-profile-pic">{{getTopic.title || '' }} </h3>
+                                <h3 class="reply-header-title" style="font-size: 22px"  slot="view-user-after-profile-pic">{{getTopic.title || '' }} </h3>
                             </ViewUserForum>
 
                         </div>
@@ -75,12 +75,15 @@
 
                                 <div style="text-align: right">
                                     <h2>{{this.getPrice}}</h2>
+
+                                    <ServerTimerCountDown />
+                                    <AltcoinsPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" altcoinCurrency="btc" />
+
+                                    <br/>
                                     <h3 v-if="(this.getTopic.price.youSave||'') != ''">{{this.getTopic.price.listPrice||''}} saving {{this.getTopic.price.youSave||''}}</h3>
                                     <h4 v-if="(this.getTopic.price.watching||'') != ''">watching {{this.getTopic.price.watching||''}}</h4>
                                     <h3 v-if="(this.getTopic.price.quantitySold||'') != ''">sold {{this.getTopic.price.quantitySold||''}}</h3>
                                     <h4 v-if="(this.getTopic.price.quantityAvailable||'') != ''">{{this.getTopic.price.quantityAvailable||''}}</h4>
-
-                                    <ServerTimerCountDown />
                                 </div>
 
 
@@ -168,7 +171,9 @@
 
     import Topic from 'models/Topic/Topic.model';
     import Attachments from 'models/Attachment/Attachments.model'
+
     import ServerTimerCountDown from 'client/components/util-components/UI/timer-count-down/ServerTimerCountDown.component.vue'
+    import AltcoinsPrice from 'client/components/util-components/UI/altcoins-price/AltcoinsPrice.component.vue'
 
     export default{
 
@@ -184,6 +189,7 @@
             'Voting' : Voting,
             'ViewUserForum': ViewUserForum,
             'ServerTimerCountDown': ServerTimerCountDown,
+            'AltcoinsPrice': AltcoinsPrice,
         },
 
         props: {

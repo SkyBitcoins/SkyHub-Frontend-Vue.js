@@ -2,7 +2,14 @@
 
     <div>
         time left:
-        <b>{{60-this.getCountDownSeconds}}s</b>
+        <b>
+            <div v-if="this.getCountDownSeconds != 666">
+                {{this.getCountDownSeconds}}s
+            </div>
+            <div v-else>
+                -
+            </div>
+        </b>
     </div>
 
 </template>
@@ -13,9 +20,11 @@
 
         name: "ServerTimerCountDown",
 
+        //@onCountDown,
+
         data() {
             return {
-                countDown: '',
+                countDown: 666,
                 now: 0,
             }
         },
@@ -49,7 +58,14 @@
                 this.now = (new Date()).getTime();
                 this.now %=  (1000 * 60); // only for the seconds
 
-                this.countDown = this.now -  diff;
+                let countDown = (this.now -  diff);
+
+                this.countDown = (61*1000) - countDown;
+
+                if ((this.countDown < 5) || (this.countDown > 55)){
+                    this.$emit('onCountDown',this.countDown);
+                }
+
             }
 
         },
