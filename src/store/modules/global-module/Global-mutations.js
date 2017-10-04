@@ -14,5 +14,12 @@ export default{
         state.refModal = refModal;
     },
 
+    SET_GLOBAL_TIME_SERVER: (state, { time }) => {
+        state.timeServer = time
+    },
+
+    SET_GLOBAL_TIME_CLIENT: (state, { time }) => {
+        state.timeClient = time
+    },
 
 }

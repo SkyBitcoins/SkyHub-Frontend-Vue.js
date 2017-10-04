@@ -18,5 +18,13 @@ export default{
 
     },
 
+    GLOBAL_NEW_TIME_SERVER: ({ commit }, { time }) => {
+        commit('SET_GLOBAL_TIME_SERVER', {time});
+    },
+
+    GLOBAL_NEW_TIME_CLIENT: ({ commit }, { time }) => {
+        commit('SET_GLOBAL_TIME_CLIENT', { time });
+    },
+
 }
 

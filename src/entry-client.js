@@ -55,6 +55,8 @@ FetchService.startService(store.dispatch, store.state);
 store.dispatch('SYSTEM_NOTIFICATIONS_CHECK_PERMISSION',{});
 store.dispatch('USER_NOTIFICATIONS_FETCHING_SERVICE_START',{});
 
+store.dispatch('GLOBAL_NEW_TIME_CLIENT', { time: new Date().getTime() } ); //Dispatching Server Time
+
 console.log("@@@@@@@@@ STORE", store);
 
 // wait until router has resolved all async before hooks

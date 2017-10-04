@@ -13,6 +13,9 @@ export default {
     state:  {
         refAuthenticationModal: null,
         refModal: null,
+
+        timeServer: 0,
+        timeClient: 0,
     },
     actions,
     mutations,
