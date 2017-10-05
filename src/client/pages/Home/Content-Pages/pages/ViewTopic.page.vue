@@ -7,6 +7,7 @@
 <template>
 
     <div>
+
         <HeaderCover  v-if=" (getTopic !== null) && (getTopicRouter.notFound === false)"
                       :title="getTopic.title||''"
                       :subTitle="' '"
@@ -24,11 +25,10 @@
 
         <WebsiteHeaderCover v-else />
 
-
         <div  class='anchor col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 col-tn-12 col-tn-offset-0'  style="padding-bottom: 30px" >
 
 
-            <div style='position: relative; z-index: 2 '>
+            <div style='position: relative;  '>
 
                 <div v-if="(getTopicRouter.notFound === false)&&(getTopic !== null)">
 
@@ -78,6 +78,7 @@
 
                                     <ServerTimerCountDown />
                                     <CryptoPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" cryptoCurrency="BTC" />
+
 
                                     <br/>
                                     <h3 v-if="(this.getTopic.price.youSave||'') != ''">{{this.getTopic.price.listPrice||''}} saving {{this.getTopic.price.youSave||''}}</h3>
@@ -173,7 +174,8 @@
     import Attachments from 'models/Attachment/Attachments.model'
 
     import ServerTimerCountDown from 'client/components/util-components/UI/timer-count-down/ServerTimerCountDown.component.vue'
-    import CryptoPrice from 'client/components/util-components/UI/crypto-price/CryptoPrice.component.vue'
+
+    import CryptoPrice from 'modules/crypto/crypto-price/CryptoPrice.component.vue'
 
     export default{
 
@@ -190,6 +192,7 @@
             'ViewUserForum': ViewUserForum,
             'ServerTimerCountDown': ServerTimerCountDown,
             'CryptoPrice': CryptoPrice,
+
         },
 
         props: {
@@ -282,6 +285,7 @@
                 }
 
             },
+
         }
 
     }

@@ -13,52 +13,62 @@
             <div>
                 <div class="anchor" style='padding-left: 42px' >
 
-                    <img v-if="getTopicImage.img !== ''" class="table-forums-topic-image" :src="getTopicImage.img" :alt="getTopicTitle" />
+                    <div class="col-md-8">
+                        <img v-if="getTopicImage.img !== ''" class="table-forums-topic-image" :src="getTopicImage.img" :alt="getTopicTitle" />
 
-                    <router-link :to="'/'+topic.URL+'#top'" :disableLink="this.showPreview" >
-                        <h4 class="table-forums-topic-title" v-html="getTopicTitle"></h4>
-                        <h2><b>{{this.getPrice}}</b></h2>
-                        <h3>
-                            <CryptoPrice :fiatValue="this.topic.price.price" :fiatCurrency="this.topic.price.currency" cryptoCurrency="BTC" />
-                        </h3>
-
-                        <h4 v-if="(this.topic.price.youSave||'') != ''">{{this.topic.price.listPrice||''}} saving {{this.topic.price.youSave||''}}</h4>
-                        <h4 v-if="(this.topic.price.watching||'') != ''">watching {{this.topic.price.watching||''}}</h4>
-                        <h3 v-if="(this.topic.price.quantitySold||'') != ''">sold {{this.topic.price.quantitySold||''}}</h3>
-                        <h4 v-if="(this.topic.price.quantityAvailable||'') != ''">{{this.topic.price.quantityAvailable||''}}</h4>
-                    </router-link>
-
-
-                    <div v-if="(this.viewMore === true) && (this.showPreview === true) && (this.previewStatus)">
-
-                        <router-link :to="'/'+topic.URL" :disableLink="this.showPreview" >
-                            <div class="table-forums-topic-body word-wrap" v-html="this.getShortDescription">
-                            </div>
+                        <router-link :to="'/'+topic.URL+'#top'" :disableLink="this.showPreview" >
+                            <h4 class="table-forums-topic-title" v-html="getTopicTitle"></h4>
                         </router-link>
+                        <div>
+                            <h2><b>{{this.getPrice}}</b></h2>
+                            <h3>
+                                <CryptoPrice :fiatValue="this.topic.price.price" :fiatCurrency="this.topic.price.currency" cryptoCurrency="BTC" />
+                            </h3>
 
-                        <a type="button" class="btn btn-default btn-xs btn-rounded view-more" @click="enablePreviewStatus(false)">
-                            ... View More
-                        </a>
+                            <h4 v-if="(this.topic.price.youSave||'') != ''">{{this.topic.price.listPrice||''}} saving {{this.topic.price.youSave||''}}</h4>
+                            <h4 v-if="(this.topic.price.watching||'') != ''">watching {{this.topic.price.watching||''}}</h4>
+                            <h3 v-if="(this.topic.price.quantitySold||'') != ''">sold {{this.topic.price.quantitySold||''}}</h3>
+                            <h4 v-if="(this.topic.price.quantityAvailable||'') != ''">{{this.topic.price.quantityAvailable||''}}</h4>
+                        </div>
+
+
+                        <div v-if="(this.viewMore === true) && (this.showPreview === true) && (this.previewStatus)">
+
+                            <router-link :to="'/'+topic.URL" :disableLink="this.showPreview" >
+                                <div class="table-forums-topic-body word-wrap" v-html="this.getShortDescription">
+                                </div>
+                            </router-link>
+
+                            <a type="button" class="btn btn-default btn-xs btn-rounded view-more" @click="enablePreviewStatus(false)">
+                                ... View More
+                            </a>
+                        </div>
+
+                        <div v-if="(this.viewMore === false) || ((this.viewMore === true) && (this.showPreview === false)) || ((this.viewMore === true) && (this.showPreview === true)  && (this.previewStatus === false))">
+
+                            <router-link :to="'/'+topic.URL" :disableLink="this.showPreview" >
+                                <div class="table-forums-topic-body word-wrap" v-html="this.getDescription" >
+                                </div>
+                            </router-link>
+                        </div>
                     </div>
 
-                    <div v-if="(this.viewMore === false) || ((this.viewMore === true) && (this.showPreview === false)) || ((this.viewMore === true) && (this.showPreview === true)  && (this.previewStatus === false))">
+                    <div class="col-md-4">
+                        <ViewUserForum style='display: inline' :authorId="topic.authorId" :additionalInformation="topic.addInfo" :authorInfo="topic.authorInfo">
 
-                        <router-link :to="'/'+topic.URL" :disableLink="this.showPreview" >
-                            <div class="table-forums-topic-body word-wrap" v-html="this.getDescription" >
-                            </div>
-                        </router-link>
+                            <ShowDate :date="topic.addInfo.dtRealCreation||topic.dtCreation" slot="view-user-bottom"/>
+
+                        </ViewUserForum>
                     </div>
+
+
 
                 </div>
 
                 <div class="clearfix" />
 
 
-                <ViewUserForum style='display: inline' :authorId="topic.authorId" :additionalInformation="topic.addInfo" :authorInfo="topic.authorInfo">
 
-                    <ShowDate :date="topic.addInfo.dtRealCreation||topic.dtCreation" slot="view-user-bottom"/>
-
-                </ViewUserForum>
 
                 <br />
 
@@ -104,7 +114,7 @@
     import {sanitizeAdvanced, sanitizeAdvancedShortDescription} from 'modules/utils/global-utilities/SanitizeAdvanced';
 
     import Attachments from 'models/Attachment/Attachments.model'
-    import CryptoPrice from 'client/components/util-components/UI/crypto-price/CryptoPrice.component.vue'
+    import CryptoPrice from 'modules/crypto/crypto-price/CryptoPrice.component.vue'
 
     export default{
 
