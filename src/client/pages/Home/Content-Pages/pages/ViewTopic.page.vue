@@ -77,7 +77,7 @@
                                     <h2>{{this.getPrice}}</h2>
 
                                     <ServerTimerCountDown />
-                                    <AltcoinsPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" altcoinCurrency="btc" />
+                                    <CryptoPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" cryptoCurrency="BTC" />
 
                                     <br/>
                                     <h3 v-if="(this.getTopic.price.youSave||'') != ''">{{this.getTopic.price.listPrice||''}} saving {{this.getTopic.price.youSave||''}}</h3>
@@ -173,7 +173,7 @@
     import Attachments from 'models/Attachment/Attachments.model'
 
     import ServerTimerCountDown from 'client/components/util-components/UI/timer-count-down/ServerTimerCountDown.component.vue'
-    import AltcoinsPrice from 'client/components/util-components/UI/altcoins-price/AltcoinsPrice.component.vue'
+    import CryptoPrice from 'client/components/util-components/UI/crypto-price/CryptoPrice.component.vue'
 
     export default{
 
@@ -189,7 +189,7 @@
             'Voting' : Voting,
             'ViewUserForum': ViewUserForum,
             'ServerTimerCountDown': ServerTimerCountDown,
-            'AltcoinsPrice': AltcoinsPrice,
+            'CryptoPrice': CryptoPrice,
         },
 
         props: {

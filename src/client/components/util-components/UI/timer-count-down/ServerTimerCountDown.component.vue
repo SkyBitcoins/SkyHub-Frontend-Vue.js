@@ -3,12 +3,12 @@
     <div>
         time left:
         <b>
-            <div v-if="this.getCountDownSeconds != 666">
+            <span v-if="this.getCountDownSeconds != 666" :style="'color: '+ (getCountDownSeconds < 10 ? 'red' : 'black') ">
                 {{this.getCountDownSeconds}}s
-            </div>
-            <div v-else>
+            </span>
+            <span v-else>
                 -
-            </div>
+            </span>
         </b>
     </div>
 
@@ -33,7 +33,7 @@
 
             getCountDownSeconds(){
                 return Math.floor(this.countDown/1000)
-            }
+            },
 
         },
 
@@ -42,16 +42,26 @@
             if (!this.$isServer){
                 window.setInterval(() => {
 
-                    this.countDownSeconds()
+                    this.countDownSecondsServer()
 
                 },1000);
-                this.countDownSeconds()
+                this.countDownSecondsServer()
             }
         },
 
         methods:{
 
-            countDownSeconds(){
+            countDownSecondsServer(){
+                this.now = (new Date()).getTime();
+
+                let countDown = (this.now - this.$store.state.crypto.currenciesLastTimestamp);
+
+                this.countDown = (60*1000) - countDown;
+
+            },
+
+
+            countDownSecondsServer(){
                 let diff = this.$store.state.global.timeServer - this.$store.state.global.timeClient;
                 diff %= (1000 * 60); // only for the seconds
 
@@ -67,6 +77,8 @@
                 }
 
             }
+
+
 
         },
 

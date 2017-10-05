@@ -79,6 +79,14 @@ class ClientSocketServiceClass {
             console.log('Received a message from the server!', data);
         });
 
+        // Crypto Currency Listener
+        this.setSocketReadObservable('crypto/values').subscribe(response => {
+            console.log('new DATA api/crypto/values', response, response.currenciesValues, response.lastTimeScraped);
+
+            this.dispatch('CRYPTO_NEW_CURRENCIES_VALUES', {currenciesValues: response.currenciesValues});
+            this.dispatch('CRYPTO_NEW_CURRENCIES_LAST_TIMESTAMP', {timestamp: response.lastTimeScraped});
+        });
+
         // Add a disconnect listener
         this.setSocketReadObservable("disconnect").subscribe(response => {
 

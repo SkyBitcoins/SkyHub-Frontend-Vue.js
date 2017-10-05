@@ -14,6 +14,7 @@ import LocalizationModule from './modules/localization-module/Localization-modul
 import GlobalModule from './modules/global-module/Global-module'
 import ContentModule from './modules/content-module/Content-module'
 import WebsiteModule from './modules/website-module/Website-module'
+import CryptoModule from './modules/crypto-module/Crypto-module'
 
 Vue.use(Vuex);
 
@@ -30,6 +31,8 @@ export function createStore () {
             content: ContentModule,
 
             website: WebsiteModule,
+
+            crypto: CryptoModule,
         }
     });
 }
