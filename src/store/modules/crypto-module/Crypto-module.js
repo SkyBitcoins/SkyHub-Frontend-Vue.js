@@ -15,6 +15,8 @@ export default {
         currenciesValues : [],
         currenciesLastTimestamp : 0,
 
+        cryptoWallets : [],
+
     },
     actions,
     mutations,

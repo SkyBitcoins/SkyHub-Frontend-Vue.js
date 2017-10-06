@@ -1,11 +1,14 @@
 <template>
 
     <div>
-        <PayCryptoModal ref="refPayCryptoModal" :fiatValue="this.fiatValue" :fiatCurrency="this.fiatCurrency" :cryptoCurrency="this.cryptoCurrency" :cryptoValue="this.getNewPrice" :cryptoWallet="'WALLET'" />
+        <PayCryptoModal ref="refPayCryptoModal" :fiatValue="this.fiatValue" :fiatCurrency="this.fiatCurrency" :cryptoCurrency="this.cryptoCurrency" :cryptoValue="this.getNewPrice" :cryptoWallet="this.cryptoWallet" />
+
 
         <router-link to="/login" :event="''" @click.native.prevent="handleShowPayCryptoModal" >
             <span>
-                {{this.getNewPrice}} {{this.cryptoCurrency}}
+                <b>
+                    {{this.getNewPrice}} {{this.cryptoCurrency}}
+                </b>
             </span>
         </router-link>
 
@@ -29,6 +32,8 @@
             fiatValue: {default: 0},
             fiatCurrency: {default: ''},
 
+            productId: {default: ''},
+
             cryptoCurrency: {default: 'BTC'}
 
         },
@@ -36,6 +41,7 @@
 
         data() {
             return {
+                cryptoWallet : '',
             }
         },
 
@@ -54,10 +60,23 @@
         methods:{
             async handleShowPayCryptoModal(){
 
-                if (this.$refs['refPayCryptoModal'] !== null)
+                if (this.$refs['refPayCryptoModal'] !== null){
+                    this.getCryptoWallet();
+
                     this.$refs['refPayCryptoModal'].openPayModal();
+                }
 
             },
+
+            async getCryptoWallet(){
+
+                if (this.cryptoWallet === ''){
+                    let answer = await this.$store.dispatch('CRYPTO_NEW_CRYPTO_WALLET',{productId: this.productId, cryptoCurrency:this.cryptoCurrency });
+
+                    this.cryptoWallet = answer.cryptoWallet.address;
+                }
+
+            }
         }
 
     }

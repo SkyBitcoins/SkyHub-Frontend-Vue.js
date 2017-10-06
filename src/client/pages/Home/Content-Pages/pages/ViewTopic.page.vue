@@ -77,7 +77,7 @@
                                     <h2>{{this.getPrice}}</h2>
 
                                     <ServerTimerCountDown />
-                                    <CryptoPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" cryptoCurrency="BTC" />
+                                    <CryptoPrice :fiatValue="this.getTopic.price.price" :fiatCurrency="this.getTopic.price.currency" cryptoCurrency="BTC" :productId="this.getTopic.id" />
 
 
                                     <br/>

@@ -3,6 +3,8 @@
  * (C) BIT TECHNOLOGIES
  */
 
+import Vue from 'vue'
+import CryptoWallet from 'models/Crypto/CryptoWallet.model'
 
 export default{
 
@@ -12,6 +14,15 @@ export default{
 
     SET_CRYPTO_CURRENCIES_TIMESTAMP: (state, { timestamp }) => {
         state.currenciesLastTimestamp = timestamp;
+    },
+
+    SET_CRYPTO_WALLET_PAY: (state, { cryptoWalletData }) => {
+
+        let cryptoWallet = new CryptoWallet(cryptoWalletData) ;
+
+        Vue.set(state.cryptoWallets, cryptoWallet.id, cryptoWallet);
+
+        return cryptoWallet;
     },
 
 }

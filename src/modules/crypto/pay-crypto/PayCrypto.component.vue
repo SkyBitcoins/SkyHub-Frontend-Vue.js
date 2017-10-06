@@ -24,7 +24,9 @@
             <div class="clearfix" />
 
             <br/>
-            <span>{{this.getQRCodeAddress}}</span>
+            <a :href="this.getQRCodeAddress" style="margin-bottom: 0">
+                {{this.getQRCodeAddress}}
+            </a>
 
         </div>
 
@@ -68,7 +70,10 @@
         computed:{
 
             getQRCodeAddress(){
-                return 'bitcoin:'+this.cryptoWallet+'?amount='+this.cryptoValue
+                if (this.cryptoCurrency === 'BTC')
+                    return 'bitcoin:'+this.cryptoWallet+'?amount='+this.cryptoValue
+
+                return ''
             }
 
         },

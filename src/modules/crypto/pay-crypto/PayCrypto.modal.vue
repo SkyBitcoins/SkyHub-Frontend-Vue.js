@@ -88,12 +88,10 @@
 
             payCryptoSuccess(resource){
 
-                let onSuccess = this.onSuccess || function () {
-                };
+                let onSuccess = this.onSuccess || function () {};
                 if (typeof onSuccess === 'function') onSuccess(resource);
 
-                onSuccess = this.onSuccessFunction || function () {
-                };
+                onSuccess = this.onSuccessFunction || function () {};
                 if (typeof onSuccess === 'function') onSuccess(resource);
 
                 this.close();

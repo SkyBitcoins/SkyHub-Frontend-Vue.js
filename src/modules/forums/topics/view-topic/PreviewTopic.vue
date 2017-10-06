@@ -22,7 +22,7 @@
                         <div>
                             <h2><b>{{this.getPrice}}</b></h2>
                             <h3>
-                                <CryptoPrice :fiatValue="this.topic.price.price" :fiatCurrency="this.topic.price.currency" cryptoCurrency="BTC" />
+                                <CryptoPrice :fiatValue="this.topic.price.price" :fiatCurrency="this.topic.price.currency" cryptoCurrency="BTC" :productId="this.topic.id" />
                             </h3>
 
                             <h4 v-if="(this.topic.price.youSave||'') != ''">{{this.topic.price.listPrice||''}} saving {{this.topic.price.youSave||''}}</h4>
