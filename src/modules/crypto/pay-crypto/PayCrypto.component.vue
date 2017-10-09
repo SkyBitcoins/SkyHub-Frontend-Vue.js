@@ -7,16 +7,17 @@
 
         <div style="text-align: left">
 
-            <div class="col-md-6">
+            <div class="col-md-5" style="padding-left: 0">
                 <qrcode-vue :value="this.getQRCodeAddress" size="200"></qrcode-vue>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-7" style="padding-left: 0">
                 <div>
                     <span>Price: {{this.fiatValue}}   {{this.fiatCurrency}}</span> <br/> <br/>
 
-                    <b><span>Value: {{this.cryptoValue}}   {{this.cryptoCurrency}}</span> <br/></b>
-                    <span>Wallet: {{this.cryptoWallet}} </span><br/>
+                    <b><span>Value: {{this.cryptoValue}}   {{this.cryptoCurrency}}</span></b> <br/> <br/>
+                    <span>Wallet: </span><br/>
+                    <span>{{this.cryptoWallet}} </span><br/>
 
                 </div>
             </div>
